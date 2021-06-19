@@ -1,0 +1,28 @@
+<div class="container" style="height: 100vh; padding-top: 100px; padding-bottom: 20px;">
+    <div class="card" id="chat" style="height: 100%;">
+        <div class="card-header">
+            Chat
+        </div>
+        <div class="card-body" id="final">
+            <div *ngFor="let a of myMessages; let ultimo = last;" 
+                [ngClass]="{
+                    'verde': ultimo && a.user === userChat.user
+                }" 
+                class="item">
+                <label for="" style="font-weight: bold;">{{ a.user }}:</label>&nbsp;
+                <span>{{ a.text }}</span>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <div class="row">
+                <div class="col-md-10 col-sm-10 col-xs-10">
+                    <input type="text" class="form-control" (change)="myMessage()" [(ngModel)]="userChat.text" id="exampleFormControlInput1" placeholder="Escribe algo ...">
+                </div>
+                <div class="col text-center">
+                    <button type="button" class="botones" (click)="myMessage(true)"><i class="fas fa-check"></i> Si</button>&nbsp; &nbsp;
+                    <button type="button" class="botones" (click)="myMessage(false)"><i class="fas fa-times"></i> No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

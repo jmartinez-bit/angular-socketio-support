@@ -1,0 +1,60 @@
+<div class="container" style="margin-top: 170px;">
+    <div class="card col-md-6" style="margin: 0 auto;">
+        <div class="card-header text-center">
+          Bienvenido al Soporte Técnico
+        </div>
+        <div class="card-body">
+          <p class="card-text"><small>Ingrese los siguientes datos para una rapida atención</small></p><br>
+          <form [formGroup]="angForm" class="form-floating">
+
+            <div class="form-floating mb-3">
+                <input type="text" 
+                      class="form-control" 
+                      [ngClass]="{
+                        'is-valid': f.username.touched && f.username.valid,
+                        'is-invalid': f.username.touched && f.username.invalid
+                      }"
+                      name="username"
+                      [(ngModel)]="user.username"
+                      formControlName="username"
+                      id="floatingInputName" 
+                      placeholder="Username" 
+                      autofocus>
+                <label for="floatingInputName">Nombre de Usuario</label>
+                <div *ngIf="f.username.touched && f.username.invalid" class="invalid-feedback">
+                  <span *ngIf="f.username.errors?.required">
+                    El nombre de usuario no puede estar vacio
+                  </span>
+                </div>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="email" 
+                      class="form-control" 
+                      [ngClass]="{
+                        'is-valid': f.email.touched && f.email.valid,
+                        'is-invalid': f.email.touched && f.email.invalid
+                      }" 
+                      name="email"
+                      [(ngModel)]="user.email"
+                      formControlName="email"
+                      id="floatingInputEmail" 
+                      placeholder="name@example.com">
+                <label for="floatingInputEmail">Correo Electronico</label>
+                <div *ngIf="f.email.touched && f.email.invalid" class="invalid-feedback">
+                  <span *ngIf="f.email.errors?.required">
+                    El email no puede estar vacio
+                  </span>
+                  <span *ngIf="f.email.errors?.email">
+                    El email no es valido
+                  </span>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2">  
+              <input type="submit" class="btn btn-primary btn-lg" value="Ingresar al Chat" [disabled]="!angForm.valid" (click)="onClickSubmit()">
+            </div>
+          </form>
+        </div>
+      </div>
+</div>
